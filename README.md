@@ -1,3 +1,12 @@
+## Setup
+
+```
+clone the project 
+cd todo-list
+npm run start
+```
+
+
 ## Available Scripts
 
 In the project directory, you can run:
