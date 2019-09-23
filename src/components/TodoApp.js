@@ -75,7 +75,7 @@ handleToogle=id=>{
 }
 
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   todos: state.todos.todos
 });
 

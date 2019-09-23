@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoApp should render TodoApp view 1`] = `ReactWrapper {}`;
