@@ -53,19 +53,14 @@ handleToogle=id=>{
   render () {
     const {todos}=this.props;
     return (
-      
         <div className='container'>
-        
           <header className="header">
             <h1 className='heading'>TodoList</h1>
             <TodoForm 
             handleNewTodoChange={this.handleNewTodoChange}
             handleSubmit={this.handleSubmit}
-          
             />
           </header>
-
-         
           <div>
             <section className="main">
             { todos.length===0?(<p className='info'>No todos today,woo!</p>):(
@@ -74,18 +69,14 @@ handleToogle=id=>{
            </section>
            <Footer todos={todos} incompleteTodos={todos.filter(one=>one.isCompleted===false)}/>
            </div>
-     
-         
           </div>
     )
   }
 }
 
 
-
 const mapStateToProps = state => ({
-  todos: state.todos.todos,
-  newTodo:state.todos.todo
+  todos: state.todos.todos
 });
 
 export default connect(mapStateToProps, { deleteTodo,createTodo,handleItemCompleteChecked })(TodoApp);

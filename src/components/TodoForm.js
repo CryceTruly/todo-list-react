@@ -12,5 +12,4 @@ export default props =>
       autoFocus
       placeholder="What needs to be done?"/>
     </div>
-    
   </form>
