@@ -10,7 +10,7 @@ const TodoItem = props =>
 
 export default props =>
 <div>
-  <table className="todo-list">
+  <table className="table">
     <thead>
     </thead>
     {props.todos.map(todo => <TodoItem handleRemove={props.handleRemove} handleToogle={props.handleToogle}  key={todo.id} {...todo}/>)}
