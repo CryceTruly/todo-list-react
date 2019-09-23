@@ -1,8 +1,8 @@
 import React from "react";
 import {shallow } from "enzyme";
-import  TodoItem  from "../../components/TodoList";
+import  TodoItem  from "../../components/TodoItem";
 describe("TodoApp", () => {
-    let wrapper;
+
   const props = {
     handleRemove:jest.fn(),handleToogle:jest.fn(),
     todos:[{
@@ -10,17 +10,18 @@ describe("TodoApp", () => {
     }]
   };
 
-  beforeAll(()=>{
-     wrapper = shallow(<TodoItem {...props}/>);
-  })
+
+    const wrapper = shallow(<TodoItem {...props}/>);
+
   it("should render a todo list", () => {
-   
+    const wrapper = shallow(<TodoItem {...props}/>);
     expect(wrapper).toMatchSnapshot();
   });
 
 
   it('should toggle todo completion',()=>{
-console.log(wrapper.instance());
+    const wrapper = shallow(<TodoItem {...props}/>);
+    expect(wrapper.find('.toggle')).toBeTruthy()
 
   })
 });

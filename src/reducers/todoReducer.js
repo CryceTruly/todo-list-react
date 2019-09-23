@@ -14,13 +14,15 @@ export default function(state = initialState, action) {
     case DELETE_TODO:
         return {
           ...state,
-          todos:state.todos.filter(t=>t.id!==action.payload)
+          todos:state.todos.filter(t=>t.id!==action.payload
+          ) 
         };
     case TOGGLE_TODO_CHECKED:
-        return {
-          ...state,
-          todos:action.payload
-        };  
+      const newState={
+        ...state,
+        todos:action.payload
+      }
+        return newState;  
     default:
       return state;
   }

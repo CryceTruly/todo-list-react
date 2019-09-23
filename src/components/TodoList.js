@@ -1,14 +1,7 @@
-import React from 'react'
+import React from 'react';
+import TodoItem from "./TodoItem";
 
-const TodoItem = props =>
-  <tbody  className={props.isCompleted? "completed":null}>
-    <tr className="view"><td>{props.id}</td><td style={{textDecoration:props.isCompleted?'line-through':''}}><label>{props.name}</label></td>
-    <td><input className="toggle" type="checkbox" checked={props.isCompleted}  onChange={()=>props.handleToogle(props.id)}/></td>
-    <td><button className='remove' onClick={()=>props.handleRemove(props.id)}>x</button></td>
-    </tr>
-  </tbody>
-
-export default props =>
+const TodoList=(props) =>
 <div>
   <table className="table">
     <thead>
@@ -16,4 +9,6 @@ export default props =>
     {props.todos.map(todo => <TodoItem handleRemove={props.handleRemove} handleToogle={props.handleToogle}  key={todo.id} {...todo}/>)}
   </table>
   </div>
+
+  export default TodoList;
   
