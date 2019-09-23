@@ -1,21 +1,23 @@
 import React, {Component} from 'react';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
+import {createTodo,deleteTodo,handleItemCompleteChecked} from '../actions/todo';
+import {connect} from 'react-redux';
 import Footer from './Footer';
+class TodoApp extends Component {
 
-export default class TodoApp extends Component {
  state = {
-      todos: []
+      
  }
 handleNewTodoChange=(evt)=>{
   this.setState({[evt.target.name]:evt.target.value});
 }
 handleRemove=(id)=>{
-    this.setState({todos:this.state.todos.filter(t=>t.id!==id)})
+    this.props.deleteTodo(id);
 }
 todoExists=todo=>{
   let exists=false
-  this.state.todos.forEach(item=>{
+  this.props.todos.forEach(item=>{
       if(todo===Object.values(item)[0]){
           exists= true;
       }
@@ -28,30 +30,32 @@ handleSubmit=(event)=>{
   const todo={
     name:this.state.name,
     isCompleted :false,
-    id:this.state.todos.length+1
+    id:this.props.todos.length+1
   }
 
     if(!this.todoExists(todo.name)){
-      this.setState({todos:[...this.state.todos,todo]})}
-
-
+      this.props.createTodo(todo);
+    }
     }
     
 
 handleToogle=id=>{
-    const targetTodo=this.state.todos.find(t=>t.id===id)
+    const targetTodo=this.props.todos.find(t=>t.id===id)
     const updated={
       ...targetTodo,
       isCompleted:!  targetTodo.isCompleted
     }
-    const todos=this.state.todos.map(t=>t.id===updated.id?updated:t)
-    this.setState({ todos:todos});
+    const todos=this.props.todos.map(t=>t.id===updated.id?updated:t)
+    this.props.handleItemCompleteChecked(todos)
   }
   
 
   render () {
+    const {todos}=this.props;
     return (
-        <div>
+      
+        <div className='container'>
+        
           <header className="header">
             <h1 className='heading'>TodoList</h1>
             <TodoForm 
@@ -60,14 +64,28 @@ handleToogle=id=>{
           
             />
           </header>
-          <section className="main">
-            {this.state.todos.length===0?(<p className='info'>No todos today,woo!</p>):(
-               <TodoList todos={this.state.todos} handleRemove={this.handleRemove}  handleToogle={this.handleToogle}/>
+
+         
+          <div>
+            <section className="main">
+            { todos.length===0?(<p className='info'>No todos today,woo!</p>):(
+               <TodoList todos={todos} handleRemove={this.handleRemove}  handleToogle={this.handleToogle}/>
           )}
            </section>
-           <Footer todos={this.state.todos} incompleteTodos={this.state.todos.filter(one=>one.isCompleted===false)}/>
-      
+           <Footer todos={todos} incompleteTodos={todos.filter(one=>one.isCompleted===false)}/>
+           </div>
+     
+         
           </div>
     )
   }
 }
+
+
+
+const mapStateToProps = state => ({
+  todos: state.todos.todos,
+  newTodo:state.todos.todo
+});
+
+export default connect(mapStateToProps, { deleteTodo,createTodo,handleItemCompleteChecked })(TodoApp);
