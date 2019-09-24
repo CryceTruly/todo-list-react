@@ -91,5 +91,4 @@ import {  CREATE_NEW_TODO,DELETE_TODO,TOGGLE_TODO_CHECKED} from "../../actions/t
         
         expect(todoReducer({todos:currentTodos}, dispatchedAction)).toBetruthy;
       });
-
   });
