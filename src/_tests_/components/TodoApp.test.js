@@ -34,4 +34,12 @@ describe("TodoApp", () => {
     const componentState = mapStateToProps(todoState);
     expect(componentState.todos).toEqual(appState);
   });
+
+it('should handle onChange',()=>{
+
+})
+
+
+
+
   });
