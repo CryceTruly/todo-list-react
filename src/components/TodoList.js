@@ -3,11 +3,10 @@ import TodoItem from "./TodoItem";
 
 const TodoList=(props) =>
 <div>
-  <table className="table">
-    <thead>
-    </thead>
-    {props.todos.map(todo => <TodoItem handleRemove={props.handleRemove} handleToogle={props.handleToogle}  key={todo.id} {...todo}/>)}
-  </table>
+  <ul className='list-group'>
+  {props.todos.map(todo => <TodoItem handleRemove={props.handleRemove} handleToogle={props.handleToogle}  key={todo.id} {...todo}/>)}
+  </ul>
+   
   </div>
 
   export default TodoList;

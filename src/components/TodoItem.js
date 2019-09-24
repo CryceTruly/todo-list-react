@@ -1,11 +1,15 @@
 import React from 'react'
 
-const TodoItem = props =>
-  <tbody  className={props.isCompleted? "completed":null}>
-    <tr className="view"><td>{props.id}</td><td style={{textDecoration:props.isCompleted?'line-through':''}}><label>{props.name}</label></td>
-    <td><input className="toggle" type="checkbox" checked={props.isCompleted}  onChange={()=>props.handleToogle(props.id)}/></td>
-    <td><button className='remove' onClick={()=>props.handleRemove(props.id)}>x</button></td>
-    </tr>
-  </tbody>
+function TodoItem(props) {
+  return (
+    <li  className='list-group-item'>
+    <input className="toggle mr-4" type="checkbox" checked={props.isCompleted}  onChange={()=>props.handleToogle(props.id)}/>
+   
+   <strong>{props.id}#</strong> <span style={{textDecoration:props.isCompleted?'line-through':''}}><label>{props.name}</label></span>
+   <button className='btn btn-danger btn-sm float-right' onClick={()=>props.handleRemove(props.id)}>x</button>
+  
+  </li>
+  )
+}
 
-  export default TodoItem;
+export default TodoItem;

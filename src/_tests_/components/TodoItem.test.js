@@ -1,27 +1,25 @@
 import React from "react";
-import {shallow } from "enzyme";
+import {shallow,mount } from "enzyme";
 import  TodoItem  from "../../components/TodoItem";
 describe("TodoApp", () => {
+let shallowWrapper,mountWrapper;
+  
 
+beforeAll=(()=>{
   const props = {
     handleRemove:jest.fn(),handleToogle:jest.fn(),
     todos:[{
         id:1,name:'test',isCompleted:false
     }]
   };
-
-
-    const wrapper = shallow(<TodoItem {...props}/>);
+  shallowWrapper = shallow(<TodoItem {...props}/>);
+  mountWrapper=mount(<TodoItem {...props}/>);
+  
+});
+  
 
   it("should render a todo list", () => {
-    const wrapper = shallow(<TodoItem {...props}/>);
-    expect(wrapper).toMatchSnapshot();
+    expect(shallowWrapper).toMatchSnapshot();
   });
 
-
-  it('should toggle todo completion',()=>{
-    const wrapper = shallow(<TodoItem {...props}/>);
-    expect(wrapper.find('.toggle')).toBeTruthy()
-
-  })
 });
